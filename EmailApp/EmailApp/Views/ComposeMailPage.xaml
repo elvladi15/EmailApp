@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModels="clr-namespace:EmailApp.ViewModels"
+             x:Class="EmailApp.Views.ComposeMailPage"
+             Title="Compose">
+    <NavigationPage.TitleView>
+        <Grid RowDefinitions="*" ColumnDefinitions="*,38,38,38" Padding="20,0,16,0">
+            <ImageButton Grid.Row="0" Grid.Column="1" Source="attachment_icon.png" BackgroundColor="Transparent" WidthRequest="25" HorizontalOptions="EndAndExpand"/>
+            <ImageButton Grid.Row="0" Grid.Column="2" Source="send_icon.png" BackgroundColor="Transparent" WidthRequest="25" HorizontalOptions="EndAndExpand" Command="{Binding AddMailCommand}"/>
+            <ImageButton Grid.Row="0" Grid.Column="3" Source="more_vert_white_icon.png" BackgroundColor="Transparent" WidthRequest="25" HorizontalOptions="EndAndExpand"/>
+        </Grid>
+    </NavigationPage.TitleView>
+    <StackLayout>
+        <Grid RowDefinitions="70" ColumnDefinitions="50,*,30" Padding="20,0,20,0">
+            <Label Grid.Row="0" Grid.Column="0" Text="From" VerticalOptions="Center" FontSize="Medium"/>
+            <Entry Text="{Binding From}" Grid.Row="0" Grid.Column="1" Placeholder="From" VerticalOptions="Center"/>
+            <ImageButton Grid.Row="0" Grid.Column="2" Source="expand_icon.png" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent"/>
+        </Grid>
+        <BoxView Color="#DDD" HeightRequest="1"/>
+        <Grid RowDefinitions="70" ColumnDefinitions="50,*,30" Padding="20,0,20,0">
+            <Label Grid.Row="0" Grid.Column="0" Text="To" VerticalOptions="Center" FontSize="Medium"/>
+            <Entry Text="{Binding To}" Grid.Row="0" Grid.Column="1" Placeholder="To" VerticalOptions="Center"/>
+            <ImageButton Grid.Row="0" Grid.Column="2" Source="expand_icon.png" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent"/>
+        </Grid>
+        <BoxView Color="#DDD" HeightRequest="1"/>
+        <Grid RowDefinitions="*" ColumnDefinitions="*" Padding="20,0,20,0">
+            <Editor Text="{Binding Title}" Grid.Row="0" Grid.Column="0" Placeholder="Subject" VerticalOptions="Center" FontSize="Medium" AutoSize="TextChanges"/>
+        </Grid>
+        <BoxView Color="#DDD" HeightRequest="1"/>
+        <Grid RowDefinitions="*" ColumnDefinitions="*" Padding="20,0,20,0">
+            <Editor Text="{Binding Description}" Grid.Row="0" Grid.Column="0" Placeholder="Compose email" VerticalOptions="Center" FontSize="Medium" AutoSize="TextChanges"/>
+        </Grid>
+    </StackLayout>
+</ContentPage>
