@@ -15,6 +15,7 @@ namespace EmailApp.ViewModels
         public string To { get; set; }
         public bool IsFavorite { get; set; }
         public string FavoriteStarImage { get; set; }
+        public string ImageSource { get; set; }
         public MailDetailViewModel(Mail mail)
         {
             UserImage = mail.UserImage;
@@ -25,6 +26,7 @@ namespace EmailApp.ViewModels
             To = "To " + mail.To;
             IsFavorite = mail.IsFavorite;
             FavoriteStarImage = mail.FavoriteStarImage;
+            ImageSource = mail.ImageSource;
         }
     }
 }

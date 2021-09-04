@@ -5,7 +5,7 @@
              Title="Compose">
     <NavigationPage.TitleView>
         <Grid RowDefinitions="*" ColumnDefinitions="*,38,38,38" Padding="20,0,16,0">
-            <ImageButton Grid.Row="0" Grid.Column="1" Source="attachment_icon.png" BackgroundColor="Transparent" WidthRequest="25" HorizontalOptions="EndAndExpand"/>
+            <ImageButton Grid.Row="0" Grid.Column="1" Source="attachment_icon.png" BackgroundColor="Transparent" WidthRequest="25" HorizontalOptions="EndAndExpand" Command="{Binding PickPhotoCommand}"/>
             <ImageButton Grid.Row="0" Grid.Column="2" Source="send_icon.png" BackgroundColor="Transparent" WidthRequest="25" HorizontalOptions="EndAndExpand" Command="{Binding AddMailCommand}"/>
             <ImageButton Grid.Row="0" Grid.Column="3" Source="more_vert_white_icon.png" BackgroundColor="Transparent" WidthRequest="25" HorizontalOptions="EndAndExpand"/>
         </Grid>
@@ -30,5 +30,8 @@
         <Grid RowDefinitions="*" ColumnDefinitions="*" Padding="20,0,20,0">
             <Editor Text="{Binding Description}" Grid.Row="0" Grid.Column="0" Placeholder="Compose email" VerticalOptions="Center" FontSize="Medium" AutoSize="TextChanges"/>
         </Grid>
+        <StackLayout Padding="20">
+            <Image Source="{Binding ImageSource}" HorizontalOptions="Fill" Aspect="AspectFill" HeightRequest="150"/>
+        </StackLayout>
     </StackLayout>
 </ContentPage>

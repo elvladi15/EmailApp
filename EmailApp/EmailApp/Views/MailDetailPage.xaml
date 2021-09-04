@@ -34,5 +34,8 @@
             <ImageButton Grid.Row="0" Grid.Column="3" HorizontalOptions="End" VerticalOptions="Start" Source="more_vert_gray_icon.png" BackgroundColor="Transparent" WidthRequest="25"/>
         </Grid>
         <Label Padding="20,0,20,0" Text="{Binding Description}" VerticalOptions="Center" FontSize="Medium" TextColor="Black"/>
+        <StackLayout Padding="20">
+            <Image Source="{Binding ImageSource}" HorizontalOptions="Fill"  Aspect="AspectFit" HeightRequest="300"/>
+        </StackLayout>
     </StackLayout>
 </ContentPage>

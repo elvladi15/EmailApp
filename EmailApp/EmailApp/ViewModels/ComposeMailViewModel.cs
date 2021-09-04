@@ -22,6 +22,8 @@ namespace EmailApp.ViewModels
         public string Description { get; set; }
         public string From { get; set; }
         public string To { get; set; }
+        public string ImageSource { get; set; }
+
         private IAlertService _alertService;
         private INavigationService _navigationService;
         public ComposeMailViewModel(ObservableCollection<Mail> mails, IAlertService alertService,INavigationService navigationService)
@@ -40,11 +42,51 @@ namespace EmailApp.ViewModels
                 }
                 else
                 {
-                    mails.Add(new Mail("user_image.png", Title, Description, From, To));                 
-                    await _alertService.Alert("Notification", "The Mail has been sent!", "OK");
+                    mails.Add(new Mail("user_image.png", Title, Description, From, To, ImageSource));  
                     await _navigationService.GoBack();
+                    await _alertService.Alert("Notification", "The Mail has been sent!", "OK");                 
                 }         
             });
+
+            PickPhotoCommand = new Command(PickPhoto);
+        }
+        private async void PickPhoto()
+        {
+            try
+            {
+                var photo = await MediaPicker.PickPhotoAsync();
+                await LoadPhotoAsync(photo);
+                //Console.WriteLine($"CapturePhotoAsync COMPLETED: {PhotoPath}");
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                // Feature is not supported on the device
+            }
+            catch (PermissionException pEx)
+            {
+                // Permissions not granted
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"CapturePhotoAsync THREW: {ex.Message}");
+            }
+        }
+
+        async Task LoadPhotoAsync(FileResult photo)
+        {
+            // canceled
+            if (photo == null)
+            {
+                ImageSource = null;
+                return;
+            }
+            // save the file into local storage
+            var newFile = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+            using (var stream = await photo.OpenReadAsync())
+            using (var newStream = File.OpenWrite(newFile))
+                await stream.CopyToAsync(newStream);
+
+            ImageSource = newFile;
         }
     }
 }
