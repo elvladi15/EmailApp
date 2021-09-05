@@ -42,39 +42,32 @@ namespace EmailApp.ViewModels
                 }
                 else
                 {
-                    mails.Add(new Mail("user_image.png", Title, Description, From, To, ImageSource));  
+                    int listPosition = (mails.Count == 0) ? 0 : mails[mails.Count - 1].ListPosition + 1;
+                    Mail createdMail = new Mail(
+                        listPosition,
+                        "user_image.png", 
+                        Title, 
+                        Description, 
+                        From, 
+                        To, 
+                        ImageSource,
+                        DateTime.Now,
+                        false,
+                        "unselected_star_icon.png");
+                    mails.Add(createdMail);
                     await _navigationService.GoBack();
                     await _alertService.Alert("Notification", "The Mail has been sent!", "OK");                 
                 }         
             });
-
             PickPhotoCommand = new Command(PickPhoto);
         }
         private async void PickPhoto()
         {
-            try
-            {
-                var photo = await MediaPicker.PickPhotoAsync();
-                await LoadPhotoAsync(photo);
-                //Console.WriteLine($"CapturePhotoAsync COMPLETED: {PhotoPath}");
-            }
-            catch (FeatureNotSupportedException fnsEx)
-            {
-                // Feature is not supported on the device
-            }
-            catch (PermissionException pEx)
-            {
-                // Permissions not granted
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"CapturePhotoAsync THREW: {ex.Message}");
-            }
+            var photo = await MediaPicker.PickPhotoAsync();
+            await LoadPhotoAsync(photo);
         }
-
         async Task LoadPhotoAsync(FileResult photo)
         {
-            // canceled
             if (photo == null)
             {
                 ImageSource = null;
@@ -85,7 +78,6 @@ namespace EmailApp.ViewModels
             using (var stream = await photo.OpenReadAsync())
             using (var newStream = File.OpenWrite(newFile))
                 await stream.CopyToAsync(newStream);
-
             ImageSource = newFile;
         }
     }

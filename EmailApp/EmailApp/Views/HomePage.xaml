@@ -16,30 +16,30 @@
     <Grid RowDefinitions="*">
         <StackLayout Grid.Row="0">
             <CollectionView ItemsSource="{Binding Mails}" SelectionMode="Single" SelectedItem="{Binding SelectedMail}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
                         <SwipeView>
                             <SwipeView.RightItems>
                                 <SwipeItem Text="Delete" BackgroundColor="#DB6A43" Command="{Binding Source={x:Reference homePage}, Path=BindingContext.DeleteMailCommand}" CommandParameter="{Binding}" />
                             </SwipeView.RightItems>
-                            
+
                             <StackLayout>
                                 <Grid  ColumnDefinitions="70,*,50" RowDefinitions="25,20,20" BackgroundColor="#FAFAFA" Padding="5,20,20,20">
                                     <controls:CircleImage Source="{Binding UserImage}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" HorizontalOptions="Center" WidthRequest="50" VerticalOptions="Start"/>
 
-                                    <Label x:Name="fromLabel" Text="{Binding From}" LineBreakMode="TailTruncation"  Grid.Row="0" Grid.Column="1" FontSize="17" TextColor="Black" FontAttributes="{Binding FontAttribute}"  VerticalOptions="Start" />
-                                    <Label x:Name="descriptionLabel" Text="{Binding Title}" LineBreakMode="TailTruncation" Grid.Row="1"  Grid.Column="1" FontSize="15" FontAttributes="{Binding FontAttribute}" TextColor="Black" VerticalOptions="CenterAndExpand"/>
+                                    <Label x:Name="fromLabel" Text="{Binding From}" LineBreakMode="TailTruncation"  Grid.Row="0" Grid.Column="1" FontSize="17" TextColor="Black" FontAttributes="Bold"  VerticalOptions="Start" />
+                                    <Label x:Name="descriptionLabel" Text="{Binding Title}" LineBreakMode="TailTruncation" Grid.Row="1"  Grid.Column="1" FontSize="15" FontAttributes="Bold" TextColor="Black" VerticalOptions="CenterAndExpand"/>
                                     <Label Text="{Binding Description}" LineBreakMode="TailTruncation" Grid.Row="2" Grid.Column="1" FontSize="15" TextColor="#909090" VerticalOptions="CenterAndExpand"/>
 
-                                    <Label Text="{Binding Date, StringFormat='{0:MMM d}'}" Grid.Row="0" Grid.Column="2" TextColor="Black" FontAttributes="{Binding FontAttribute}" HorizontalOptions="EndAndExpand"/>
+                                    <Label Text="{Binding Date, StringFormat='{0:MMM d}'}" Grid.Row="0" Grid.Column="2" TextColor="Black" FontAttributes="Bold" HorizontalOptions="EndAndExpand"/>
                                     <ImageButton Grid.Row="2" Grid.Column="2" HorizontalOptions="EndAndExpand" Source="{Binding FavoriteStarImage}" Command="{Binding Source={x:Reference homePage}, Path=BindingContext.FavoriteCommand}" CommandParameter="{Binding}" BackgroundColor="Transparent"/>
                                 </Grid>
                             </StackLayout>
                         </SwipeView>
-                    
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
         <ImageButton BackgroundColor="Transparent" Grid.Row="0" Source="create_mail_button.png"  HorizontalOptions="End" WidthRequest="72" HeightRequest="72" Margin="0,0,20,22" VerticalOptions="End" Command="{Binding GoToComposePageCommand}"/>
 
