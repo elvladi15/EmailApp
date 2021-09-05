@@ -8,6 +8,8 @@
 
 # Characteristics:
 - Data is preserved even when closing the app
+- When clicking on the send email icon, a local notification pops up saying "Your email has been sent!"
+- When clicking on the send email icon, the operative system email app opens up on the compose email page, with the fields "Subject", "Body" and the list destinataries pre-filled.
 
 # Screenshots of the app:
 
