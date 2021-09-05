@@ -11,12 +11,12 @@
         </Grid>
     </NavigationPage.TitleView>
     <StackLayout>
-        <Grid RowDefinitions="*" ColumnDefinitions="*,40" Padding="20,0,20,0">
+        <Grid RowDefinitions="Auto" ColumnDefinitions="*,40" Padding="20,10,20,10">
             <Label Grid.Row="0" Grid.Column="0" Text="{Binding Title}" VerticalOptions="Center" FontSize="Large" TextColor="Black"/>
-            <ImageButton Grid.Row="0" Grid.Column="1" HorizontalOptions="EndAndExpand" Source="{Binding FavoriteStarImage}" Command="{Binding}" BackgroundColor="Transparent" WidthRequest="25"/>
+            <ImageButton Grid.Row="0" Grid.Column="1" HorizontalOptions="EndAndExpand" Source="{Binding FavoriteStarImage}" BackgroundColor="Transparent" WidthRequest="25"/>
         </Grid>
         <BoxView Color="#DDD" HeightRequest="1"/>
-        <Grid  ColumnDefinitions="70,*,40,40" RowDefinitions="*,*,20" Padding="5,20,20,20">
+        <Grid  ColumnDefinitions="70,*,40,40" RowDefinitions="Auto,Auto,20" Padding="5,20,20,20">
             <controls:CircleImage Source="{Binding UserImage}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" HorizontalOptions="Center" WidthRequest="50" VerticalOptions="StartAndExpand"/>
 
             <Label Text="{Binding From}"  Grid.Row="0" Grid.Column="1" FontSize="17" TextColor="Black" VerticalOptions="Start"/>
