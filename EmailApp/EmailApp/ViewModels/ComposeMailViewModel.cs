@@ -34,41 +34,39 @@ namespace EmailApp.ViewModels
 
             AddMailCommand = new Command(async () =>
             {
-                if(string.IsNullOrEmpty(Title)||
-                string.IsNullOrEmpty(Description)||
-                string.IsNullOrEmpty(From)||
+                if (string.IsNullOrEmpty(Title) ||
+                string.IsNullOrEmpty(Description) ||
+                string.IsNullOrEmpty(From) ||
                 string.IsNullOrEmpty(To))
                 {
                     await _alertService.Alert("Error", "Please fill all the fields", "OK");
                 }
                 else
                 {
+                    var notification = new NotificationRequest
+                    {
+                        Title = "Notification",
+                        Description = "Your email has been sent!",
+                    };
+                    await NotificationCenter.Current.Show(notification);
                     int listPosition = (mails.Count == 0) ? 0 : mails[mails.Count - 1].ListPosition + 1;
                     Mail createdMail = new Mail(
                         listPosition,
-                        "user_image.png", 
-                        Title, 
-                        Description, 
-                        From, 
-                        To, 
+                        "user_image.png",
+                        Title,
+                        Description,
+                        From,
+                        To,
                         ImageSource,
                         DateTime.Now,
                         false,
                         "unselected_star_icon.png");
                     mails.Add(createdMail);
-                    await _navigationService.GoBack();
-                    await _alertService.Alert("Notification", "The Mail has been sent!", "OK");
+                    await _navigationService.GoBack();                  
 
                     string[] recipients = To.Split();
                     await Email.ComposeAsync(Title, Description, recipients);
-
-                    var notification = new NotificationRequest
-                    {
-                        Title = "Notification",
-                        Description = "Your email has been sent!",                      
-                    };
-                   await NotificationCenter.Current.Show(notification);
-                }         
+                }    
             });
             PickPhotoCommand = new Command(PickPhoto);
         }
