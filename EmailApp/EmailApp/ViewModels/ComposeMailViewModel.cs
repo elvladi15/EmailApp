@@ -1,6 +1,7 @@
 ﻿using EmailApp.Models;
 using EmailApp.Services;
 using EmailApp.Views;
+using Plugin.LocalNotification;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -56,7 +57,17 @@ namespace EmailApp.ViewModels
                         "unselected_star_icon.png");
                     mails.Add(createdMail);
                     await _navigationService.GoBack();
-                    await _alertService.Alert("Notification", "The Mail has been sent!", "OK");                 
+                    await _alertService.Alert("Notification", "The Mail has been sent!", "OK");
+
+                    string[] recipients = To.Split();
+                    await Email.ComposeAsync(Title, Description, recipients);
+
+                    var notification = new NotificationRequest
+                    {
+                        Title = "Notification",
+                        Description = "Your email has been sent!",                      
+                    };
+                   await NotificationCenter.Current.Show(notification);
                 }         
             });
             PickPhotoCommand = new Command(PickPhoto);
