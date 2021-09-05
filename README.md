@@ -6,6 +6,9 @@
 - You can favorute an email from the home page
 - You can delete emails in the home page
 
+# Characteristics:
+- Data is preserved even when closing the app
+
 # Screenshots of the app:
 
 <img src="Screenshots/1.jpeg">
